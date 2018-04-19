@@ -2066,7 +2066,6 @@ ContinuoNotes = \new Voice { \relative c {
   }
 }
 
-
 music =  {
 	<<
 		\tag #'score \tag #'CornoOnePart \new Staff { << 
@@ -2123,7 +2122,7 @@ music =  {
 			}\FagottoNotes >>
 		 } 
 
-		\tag #'score \tag #'ViolinoPiccoloPart \new Staff { << 
+		\tag #'ViolinoPiccoloPart \new Staff { << 
 			\set Staff.midiInstrument = "violin"  
 			\global \set Staff.instrumentName = \markup {
 				\column { 
@@ -2134,7 +2133,7 @@ music =  {
 			}\ViolinoPiccoloNotes >>
 		 } 
 
-		\tag #'ViolinoPiccoloOriginalPart \new Staff { << 
+		\tag #'score \tag #'ViolinoPiccoloOriginalPart \new Staff { << 
 			\set Staff.midiInstrument = "violin"  
 			\global \set Staff.instrumentName = \markup {
 				\column { 
