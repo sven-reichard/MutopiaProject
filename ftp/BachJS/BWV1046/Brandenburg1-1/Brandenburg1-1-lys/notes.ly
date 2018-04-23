@@ -1903,6 +1903,7 @@ VioloncelloNotes = \new Voice { \relative c {
 }
 
 ContinuoNotes = \new Voice { \relative c {
+  \transposition c
   \clef bass
   \key f \major  
   \time 4/4
@@ -2067,134 +2068,185 @@ ContinuoNotes = \new Voice { \relative c {
 }
 
 music =  {
-	<<
-		\tag #'score \tag #'CornoOnePart \new Staff { << 
-			\set Staff.midiInstrument = "french horn"  
-			\global \set Staff.instrumentName = \markup { 
-				\center-align {
-					 \hcenter-in # centerIndent  "Corno I." 
-				}
-		 	 } \CornoOneNotes >> 
-		} 
-		
-		\tag #'score \tag #'CornoTwoPart \new Staff { << 
-			\set Staff.midiInstrument = "french horn"  
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent  "Corno II." 
-				}
-		  	}\CornoTwoNotes >> 
-		} 
-		
-		\tag #'score \tag #'OboeOnePart \new Staff { << 
-			\set Staff.midiInstrument = "oboe"  
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent  "Oboe I." 
-				}
-			}\OboeOneNotes >> 
-		} 
-
-		\tag #'score \tag #'OboeTwoPart \new Staff { << 
-			\set Staff.midiInstrument = "oboe"  
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent "Oboe II."
-				}
-			}\OboeTwoNotes >>
-		 } 
-	
-		 \tag #'score \tag #'OboeThreePart \new Staff { << 
-			\set Staff.midiInstrument = "oboe"  
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent "Oboe III."
-				}
-			}\OboeThreeNotes >>
-		 } 
-
-		\tag #'score \tag #'FagottoPart \new Staff { << 
-			\set Staff.midiInstrument = "bassoon"  
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent "Fagotto."
-				}
-			}\FagottoNotes >>
-		 } 
-
-		\tag #'ViolinoPiccoloPart \new Staff { << 
-			\set Staff.midiInstrument = "violin"  
-			\global \set Staff.instrumentName = \markup {
-				\column { 
-					\center-align { \hcenter-in # centerIndent  "Violino" 
-						\line { \hcenter-in # centerIndent "piccolo." }
-					}
-				} 
-			}\ViolinoPiccoloNotes >>
-		 } 
-
-		\tag #'score \tag #'ViolinoPiccoloOriginalPart \new Staff { << 
-			\set Staff.midiInstrument = "violin"  
-			\global \set Staff.instrumentName = \markup {
-				\column { 
-					\center-align { \hcenter-in # centerIndent  "Violino" 
-						\line { \hcenter-in # centerIndent "piccolo." }
-						\line { \hcenter-in # centerIndent "(in Eb)" }
-					}
-				} 
-			}\ViolinoPiccoloOriginalNotes >>
-		 } 
-
-
-		\tag #'score \tag #'ViolinoOnePart \new Staff { << 
-			\set Staff.midiInstrument = "violin"  
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent "Violino I."
-				}
-			}\ViolinoOneNotes >>
-		 } 
-
-		\tag #'score \tag #'ViolinoTwoPart \new Staff { << 
-			\set Staff.midiInstrument = "violin"  
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent "Violino II."
-				}
-			}\ViolinoTwoNotes >>
-		 } 
-
-		\tag #'score \tag #'ViolaPart \new Staff { << 
-			\set Staff.midiInstrument = "viola"
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent "Viola."
-				}
-			}\ViolaNotes >>
-		 } 
-
-		\tag #'score \tag #'VioloncelloPart \new Staff { << 
-			\set Staff.midiInstrument = "cello"
-			\global \set Staff.instrumentName = \markup {
-				\center-align {
-					\hcenter-in # centerIndent "Violoncello."
-				}
-			}\VioloncelloNotes >>
-		 } 
-
-		\tag #'score \tag #'ContinuoPart \new Staff { << 
-			\set Staff.midiInstrument = "contrabass"
-			\global  \set Staff.instrumentName = \markup { 
-				\column { 
-					\center-align { \hcenter-in # centerIndent  "Continuo" 
-						\line { \hcenter-in # centerIndent "e Violone" }
-						\line { \hcenter-in # centerIndent "grosso." }
-
-					}
-				} 
-			} \ContinuoNotes >>
-		}
-	
-	>>
+  <<
+    \tag #'score \tag #'midi \tag #'CornoOnePart \new Staff { <<
+      \set Staff.midiInstrument = "french horn"
+      \set Staff.midiPanPosition = #0.8
+      \set Staff.midiMinimumVolume = #0.7
+      \set Staff.midiMaximumVolume = #1
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent  "Corno I."
 	}
+      } \CornoOneNotes >>
+						}
+    
+    \tag #'score \tag #'midi \tag #'CornoTwoPart \new Staff
+    {
+      <<
+	\set Staff.midiInstrument = "french horn"
+	\set Staff.midiPanPosition = #0.8
+	\set Staff.midiMinimumVolume = #0.7
+	\set Staff.midiMaximumVolume = #1
+	\global \set Staff.instrumentName = \markup {
+	  \center-align {
+	    \hcenter-in # centerIndent  "Corno II."
+	  }
+	}
+	\CornoTwoNotes
+      >>
+						}
+    
+    \tag #'score \tag #'midi \tag #'OboeOnePart \new Staff { <<
+      \set Staff.midiInstrument = "oboe"
+      \set Staff.midiPanPosition = #0.4
+      \set Staff.midiMinimumVolume = #0.6
+      \set Staff.midiMaximumVolume = #0.8
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent  "Oboe I."
+	}
+      }\OboeOneNotes >>
+							   }
+    
+    \tag #'score \tag #'midi \tag #'OboeTwoPart \new Staff { <<
+      \set Staff.midiInstrument = "oboe"
+      \set Staff.midiPanPosition = #0.3
+      \set Staff.midiMinimumVolume = #0.6
+      \set Staff.midiMaximumVolume = #0.8
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent "Oboe II."
+	}
+      }\OboeTwoNotes >>
+					       }
+    
+    \tag #'score \tag #'midi \tag #'OboeThreePart \new Staff { <<
+      \set Staff.midiPanPosition = #0.2
+      \set Staff.midiMinimumVolume = #0.6
+      \set Staff.midiMaximumVolume = #0.8
+      \set Staff.midiInstrument = "oboe"
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent "Oboe III."
+	}
+      }\OboeThreeNotes >>
+						 }
+    
+    \tag #'score \tag #'midi \tag #'FagottoPart \new Staff { <<
+      \set Staff.midiInstrument = "bassoon"
+      \set Staff.midiPanPosition = #0.9
+      \set Staff.midiMinimumVolume = #0.7
+      \set Staff.midiMaximumVolume = #0.8
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent "Fagotto."
+	}
+      }\FagottoNotes >>
+					       }
+    
+    \tag #'ViolinoPiccoloPart \new Staff { <<
+      \set Staff.midiInstrument = "violin"
+      \set Staff.midiPanPosition = #-0.8
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      \global \set Staff.instrumentName = \markup {
+	\column {
+	  \center-align { \hcenter-in # centerIndent  "Violino"
+			  \line { \hcenter-in # centerIndent "piccolo." }
+			}
+	}
+      }\ViolinoPiccoloNotes >>
+					 }
+    
+    \tag #'score \tag #'midi \tag #'ViolinoPiccoloOriginalPart \new Staff { <<
+      \set Staff.midiInstrument = "violin"
+      \set Staff.midiPanPosition = #-0.8
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      \global \set Staff.instrumentName = \markup {
+	\column {
+	  \center-align { \hcenter-in # centerIndent  "Violino"
+			  \line { \hcenter-in # centerIndent "piccolo." }
+			  \line { \hcenter-in # centerIndent "(in Eb)" }
+			}
+	}
+      }\ViolinoPiccoloOriginalNotes >>
+							      }
+    
+    
+    \tag #'score \tag #'midi \tag #'ViolinoOnePart \new Staff { <<
+      \set Staff.midiInstrument = "violin"
+      \set Staff.midiPanPosition = #-0.7
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent "Violino I."
+	}
+      }\ViolinoOneNotes >>
+						  }
+    
+    \tag #'score \tag #'midi \tag #'ViolinoTwoPart \new Staff { <<
+      \set Staff.midiPanPosition = #-0.6
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      \set Staff.midiInstrument = "violin"
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent "Violino II."
+	}
+      }\ViolinoTwoNotes >>
+						  }
+    
+    \tag #'score \tag #'midi \tag #'ViolaPart \new Staff { <<
+      \set Staff.midiPanPosition = #0.3
+      \set Staff.midiInstrument = "viola"
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent "Viola."
+	}
+      }\ViolaNotes >>
+					     }
+    
+    \tag #'score \tag #'midi \tag #'VioloncelloPart \new Staff { <<
+      \set Staff.midiPanPosition = #0.6
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      \set Staff.midiInstrument = "cello"
+      \global \set Staff.instrumentName = \markup {
+	\center-align {
+	  \hcenter-in # centerIndent "Violoncello."
+	}
+      }\VioloncelloNotes >>
+						   }
+    
+    \tag #'score \tag #'midi \tag #'ContinuoPart \new Staff { <<
+      \set Staff.midiPanPosition = #1
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      \set Staff.midiInstrument = "contrabass"
+      \global  \set Staff.instrumentName = \markup {
+	\column {
+	  \center-align { \hcenter-in # centerIndent  "Continuo"
+			  \line { \hcenter-in # centerIndent "e Violone" }
+			  \line { \hcenter-in # centerIndent "grosso." }
+			}
+	}
+      }
+      \ContinuoNotes >>
+							    }
+
+    \tag #'midi \tag #'ContinuoPart \new Staff { <<
+      \set Staff.midiPanPosition = #1
+      \set Staff.midiMinimumVolume = #0.4
+      \set Staff.midiMaximumVolume = #0.4
+      \set Staff.midiInstrument = "harpsichord"
+      << \ViolinoOneNotes \\ \ViolinoTwoNotes\\ \transpose c c' \ContinuoNotes >>
+    >>
+					       }
+  >>
+}
 
