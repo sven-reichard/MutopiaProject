@@ -164,8 +164,35 @@ BassoonNotes = \relative f
   f16 e f e d8~d16 bes c8 c, |
   f a f d g c, |
   f a d~d16 bes c8 c, |
-  f r r r4 r8 |
-  r2.
+}
+
+ViolinoPiccoloNotes =\relative c'
+{
+  \transposition es
+  \key d \major
+  \transpose f d \relative c' {
+  r8 f f f a16 g a f |
+  c'8 c c c e16 d e c |
+  f8 f f f g16 f e d |
+  e f f8.\trill e32 f g8 c, g' |
+  a16 g f e f d g g, c d e c |
+  f e d c d bes e e, a bes c a |
+				% p.15
+  d16 c bes a bes g c c, f g a f |
+  bes8 bes bes bes16 c bes a bes g |
+  g'8 bes, bes bes c16 bes a g |
+  a8 a a a16 bes a g a f |
+  f'8 a, a a bes16 a g f |
+  e d e c g' f g e bes' a bes g |
+				%
+  e'16 d e c g' f g e bes' a bes g |
+  a g a e f e f g g8. f16 |
+  f e f c d c d a bes a bes g |
+  a g a e f e f g g8. f16 |
+}
+  d8 d d d fis16 e fis d |
+  a'8 a a a cis16 b cis a|
+				% p.16
 }
 
 ViolinoOneNotes = \relative c'
@@ -228,28 +255,19 @@ ViolaNotes = \relative c'
 CelloNotes = \relative f
 {
   \BassoonNotes
+  |  f,16 g a g a f f'8 e d |
+  c16 d e d e c bes'8 a g |
+  
 }
 BassoNotes = {
    \relative f
    {
 \transposition c
 \global |
-  \clef bass
-f8 a c a f r |
-  e g c e, c r |
-  d f d a f r |
-  c' c c c e16 d e c |
-  f8 a d e, g c |
-  d, f bes c, e a|
-				% p.15
-  bes,8 d g a, c f |
-  g, d' g f, d' g |
-  e, c' g' e c c' |
-  f,, c' f e, c' f |
-  d, d' a bes d g, |
-  c e g c, e g |
+\clef bass
+\BassoonNotes
 }
-}
+ }
 
 music = {
   <<
@@ -299,6 +317,14 @@ music = {
     }
     \new Staff { 
       \set Staff.midiInstrument = "violin"
+      \set Staff.midiPanPosition = #-0.8
+      \set Staff.midiMinimumVolume = #0.5
+      \set Staff.midiMaximumVolume = #0.7
+      
+      \ViolinoPiccoloNotes 
+    }
+    \new Staff { 
+      \set Staff.midiInstrument = "violin"
       \set Staff.midiPanPosition = #-0.7
       \set Staff.midiMinimumVolume = #0.5
       \set Staff.midiMaximumVolume = #0.7
@@ -338,3 +364,7 @@ music = {
   >>
 }
 
+
+%%% Local Variables:
+%%% LilyPond-master-file: "score.ly"
+%%% End:
