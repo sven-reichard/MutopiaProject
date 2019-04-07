@@ -3,6 +3,7 @@
 global = {\time 2/2 \key bes \minor}
 
 soprano = \relative c'' {
+  \voiceOne
   bes2 f | % 1
   r4 ges' f es | % 2
   des c des es | % 3
@@ -21,9 +22,11 @@ soprano = \relative c'' {
   es4 f8 ges f4 es |
   des1 |
   c1 |
+  \voiceThree
   bes1 ~ |
   bes2. es4 |
 
+  \voiceOne
   as,1~ |
   as2 des |
   c f ~|
@@ -56,7 +59,7 @@ soprano = \relative c'' {
   es d |
   es r| % 55
 
-  r1 r r r r r r r | %63
+  s1 s s s s s s s | %63
   r1 r r |%66
   r2 bes |
   f r4 ges' |%68
@@ -71,6 +74,7 @@ soprano = \relative c'' {
 }
 
 mezzo = \relative c' {
+  \voiceFour
   r1 r1 |
   f2 bes, |
   r4 des' c bes |
@@ -89,12 +93,14 @@ mezzo = \relative c' {
   c bes8 a bes2~ |
   bes2 as~ |
   as1 |
-  ges1 ~ |
+  \voiceOne
+  ges1 ~ | %18
 
   ges1 |
   f2 bes |
   as des~ |
-  des4 c bes2 |
+  des4 c \voiceThree bes2 |
+  \voiceOne
   as1~ |
   as4 bes as ges |
 
@@ -123,6 +129,7 @@ mezzo = \relative c' {
   bes |
   bes2 es, | % 55
 
+  \voiceOne
   r4 f' es des |
   c bes c des |
   es ges f es |
@@ -137,7 +144,7 @@ mezzo = \relative c' {
   as |
   ges | %66
   f |
-  
+  \voiceTwo
   f2 bes, | %68
 
   r4 c' bes a |
@@ -153,15 +160,21 @@ mezzo = \relative c' {
 
 alto = \relative bes
 {
-  r1 r1  r1 r1  r1 r1  r1 r1 r1
+  \voiceOne
+  s1 s1  s1 s1  s1 s1  s1 s1 r1 % 8
+  \change Staff = "down"
   bes2 f |
-  r4 ges' f es |
-  des c bes c8 des |
 
-  es4 f g2 |
+  r4 ges' f es | 
+  des c bes c8 des | %12
+
+  es4 f ges2 |
   f4 es des c |
+  \change Staff = "up"
+  \voiceTwo
   des es f ges |
   c,2 f~|
+
   f4 d es f~ |
   f es8 d es2~|
   es1 |
@@ -228,9 +241,12 @@ alto = \relative bes
 
 tenor = \relative f
 {
-  r1 r1  r1 r1  r1 r1  r1 r1  r1 r1  r1 
+  \oneVoice
+  r1 r1  r1 r1  r1 r1  r1 r1  r1 r1  r1
+  \voiceThree
   f2 bes, |
   r4 des' c bes |
+  \voiceOne
   a f g a |
   bes c, des es |
   f ges as2 |
@@ -305,7 +321,9 @@ tenor = \relative f
 
 bass = \relative c
 {
+  \oneVoice
   r1 r1 r1 r1 r1 r1 r1 r1 r1 r1 r1 r1 r1 r1
+  \voiceTwo
   bes2 f |
   r4 ges' f es |
   d bes c d |
@@ -347,7 +365,7 @@ bass = \relative c
   ges4 as bes2 |
   es, as,~ |
   as4 ges f es |
-  es'1 |
+  bes'1 |
   es2. f4| %55
 
   ges1~ |
@@ -380,13 +398,13 @@ bass = \relative c
 
 \score
 {
-  \new GrandStaff <<
-    \new Staff { \midiInstrument #harpsichord \global \soprano }
-    \new Staff { \global \mezzo }
-    \new Staff { \global \clef alto \alto }
-    \new Staff { \global \clef tenor \tenor }
-    \new Staff { \global \clef bass \bass }
+  \new PianoStaff <<
+    \new Staff="up" { << \global \soprano\\
+                            \global \mezzo \\
+                          \global \alto >>}
+
+    \new Staff="down" { \global \clef bass << \tenor \\ \bass >> }
   >>
   \layout{}
-  \midi{\tempo 2=54}
+  \midi{\tempo 2=72}
 }
